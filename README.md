@@ -7,10 +7,12 @@ A dependency-free portfolio homepage designed for GitHub Pages. The site uses a 
 Edit [index.html](./index.html) to replace:
 
 - Your name, introduction, location, and contact links
-- Project titles, descriptions, tags, dates, and URLs
+- Project titles, descriptions, tags, and URLs
 - The number of project cards
 
-The visual treatment for each project is created with CSS in [styles.css](./styles.css), so no image assets or build tools are required.
+Each card has a `data-video-id` attribute on its media area. Replace its empty value with the ID from a YouTube URL (for example, `dQw4w9WgXcQ`) to embed that video. Leave it empty to show the placeholder.
+
+Project media is loaded by [script.js](./script.js), so no build tools are required.
 
 ## Publish with GitHub Pages
 
