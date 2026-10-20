@@ -199,8 +199,13 @@ a {
 }
 
 .tag-list span {
-  padding: 0.3rem 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.4rem;
   border-radius: 2rem;
+  line-height: 1.2;
+  text-align: center;
   color: #fff;
   background: var(--accent-dark);
   font-size: var(--size-body);

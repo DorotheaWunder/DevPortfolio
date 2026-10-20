@@ -1,19 +1,62 @@
 document.getElementById("current-year").textContent = new Date().getFullYear();
 
-document.querySelectorAll(".project-video[data-video-id]").forEach((video) => {
-  const videoId = video.dataset.videoId;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  if (!videoId) {
-    return;
+function createPlayer(container) {
+  const videoId = container.dataset.videoId;
+  const params = new URLSearchParams({
+    enablejsapi: "1",
+    rel: "0",
+    playsinline: "1",
+  });
+
+  // Browsers only allow autoplay when the video is muted.
+  if (!reduceMotion) {
+    params.set("autoplay", "1");
+    params.set("mute", "1");
+    params.set("loop", "1");
+    params.set("playlist", videoId); // needed for looping a single video
   }
 
   const iframe = document.createElement("iframe");
-  iframe.src = `https://www.youtube.com/embed/${videoId}`;
+  iframe.src = `https://www.youtube.com/embed/${videoId}?${params}`;
   iframe.title = "Project video";
-  iframe.loading = "lazy";
   iframe.allow =
     "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
   iframe.allowFullscreen = true;
 
-  video.replaceChildren(iframe);
+  container.replaceChildren(iframe);
+}
+
+function sendCommand(iframe, func) {
+  iframe.contentWindow.postMessage(
+    JSON.stringify({ event: "command", func, args: "" }),
+    "*"
+  );
+}
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      const container = entry.target;
+      const iframe = container.querySelector("iframe");
+
+      if (entry.isIntersecting) {
+        if (!iframe) {
+          createPlayer(container);
+        } else if (!reduceMotion) {
+          sendCommand(iframe, "playVideo");
+        }
+      } else if (iframe) {
+        sendCommand(iframe, "pauseVideo");
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+document.querySelectorAll(".project-video[data-video-id]").forEach((video) => {
+  if (video.dataset.videoId) {
+    observer.observe(video);
+  }
 });
