@@ -6,6 +6,10 @@
   --muted: #5c7774;
   --paper: #fef9f5;
   --line: #cfe1dc;
+  --size-body: 1.0625rem;
+  /* 17px */
+  --size-subheading: 1.25rem;
+  /* 20px */
   --heading: "Caudex", Georgia, serif;
   --sans: Avenir, "Avenir Next", "Segoe UI", sans-serif;
 }
@@ -104,15 +108,28 @@ a {
 }
 
 .social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.8rem;
   text-decoration: none;
 }
 
-.social-links a:hover {
-  color: #b9ded5;
+.social-links svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+  fill: currentColor;
 }
 
-.social-links span {
+.social-links svg.outline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.social-links a:hover {
   color: #b9ded5;
 }
 
@@ -169,7 +186,7 @@ a {
 .project-info>p {
   margin: 1.5rem 0;
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: var(--size-body);
   line-height: 1.5;
   text-align: justify;
   hyphens: auto;
@@ -182,11 +199,11 @@ a {
 }
 
 .tag-list span {
-  padding: 0.35rem 0.7rem;
+  padding: 0.3rem 0.85rem;
   border-radius: 2rem;
   color: #fff;
   background: var(--accent-dark);
-  font-size: 0.7rem;
+  font-size: var(--size-body);
 }
 
 .project-video {
@@ -215,7 +232,7 @@ a {
 .contributions-label {
   margin: 1.75rem 0 0.6rem;
   color: var(--accent);
-  font-size: 0.65rem;
+  font-size: var(--size-subheading);
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -225,7 +242,7 @@ a {
   margin: 0;
   padding-left: 1.1rem;
   color: var(--text);
-  font-size: 0.8rem;
+  font-size: var(--size-body);
   line-height: 1.5;
 }
 
@@ -241,11 +258,11 @@ a {
 }
 
 .project-link {
-  padding: 0.6rem 1.1rem;
+  padding: 0.55rem 1.3rem;
   border-radius: 2rem;
   color: #fff;
   background: var(--accent);
-  font-size: 0.7rem;
+  font-size: var(--size-body);
   text-decoration: none;
   text-transform: uppercase;
   transition: background-color 150ms ease;
@@ -254,6 +271,36 @@ a {
 .project-link:hover,
 .project-link:focus-visible {
   background: var(--accent-dark);
+}
+
+/* Reusable image helpers */
+.image-zoom {
+  overflow: hidden;
+}
+
+.image-zoom img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: transform 300ms ease;
+}
+
+.image-zoom:hover img {
+  transform: scale(1.06);
+}
+
+.stack {
+  display: grid;
+}
+
+.stack>* {
+  grid-area: 1 / 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .image-zoom img {
+    transition: none;
+  }
 }
 
 @media (max-width: 760px) {
