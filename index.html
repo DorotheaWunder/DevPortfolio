@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A personal portfolio showcasing selected projects and experience."
+    />
+    <title>Your Name | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <aside class="about-panel">
+        <div class="about-content">
+          <p class="eyebrow">Portfolio / 2026</p>
+          <h1>Your<br /><span>Name.</span></h1>
+          <p class="intro">
+            I’m a designer and developer creating thoughtful digital
+            experiences that are useful, clear, and built to last.
+          </p>
+
+          <div class="about-details">
+            <p class="detail-label">Currently</p>
+            <p>Available for select freelance projects</p>
+            <p class="detail-label">Based in</p>
+            <p>Your City, Country</p>
+          </div>
+
+          <nav class="social-links" aria-label="Social links">
+            <a href="https://github.com/" target="_blank" rel="noreferrer">GitHub <span>↗</span></a>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn <span>↗</span></a>
+            <a href="mailto:hello@example.com">Email <span>↗</span></a>
+          </nav>
+        </div>
+        <p class="copyright">© <span id="current-year"></span> Your Name</p>
+      </aside>
+
+      <main class="projects-panel">
+        <header class="projects-header">
+          <div>
+            <p class="eyebrow">Selected work</p>
+            <h2>A collection of things<br />I’ve built.</h2>
+          </div>
+          <p class="project-count">04 projects</p>
+        </header>
+
+        <section class="project-list" aria-label="Selected projects">
+          <article class="project-card project-card--featured">
+            <div class="project-visual visual--coral">
+              <span class="visual-mark">01</span>
+              <span class="visual-shape"></span>
+            </div>
+            <div class="project-info">
+              <div class="project-heading">
+                <p class="project-type">Product design · 2024</p>
+                <h3>Project One</h3>
+              </div>
+              <p>
+                A short description of the problem, your approach, and the
+                impact of this project.
+              </p>
+              <div class="tag-list">
+                <span>Research</span><span>UI design</span><span>React</span>
+              </div>
+              <a class="project-link" href="#" aria-label="View Project One">View project <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual visual--blue">
+              <span class="visual-mark">02</span>
+              <span class="visual-grid"></span>
+            </div>
+            <div class="project-info">
+              <div class="project-heading">
+                <p class="project-type">Web development · 2023</p>
+                <h3>Project Two</h3>
+              </div>
+              <p>Describe another project, its purpose, and what you learned while building it.</p>
+              <div class="tag-list"><span>JavaScript</span><span>API</span><span>Accessibility</span></div>
+              <a class="project-link" href="#" aria-label="View Project Two">View project <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual visual--yellow">
+              <span class="visual-mark">03</span>
+              <span class="visual-circle"></span>
+            </div>
+            <div class="project-info">
+              <div class="project-heading">
+                <p class="project-type">Brand identity · 2023</p>
+                <h3>Project Three</h3>
+              </div>
+              <p>Use this space for a concise case study summary or a link to the live work.</p>
+              <div class="tag-list"><span>Strategy</span><span>Branding</span><span>Prototyping</span></div>
+              <a class="project-link" href="#" aria-label="View Project Three">View project <span>↗</span></a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div class="project-visual visual--green">
+              <span class="visual-mark">04</span>
+              <span class="visual-line"></span>
+            </div>
+            <div class="project-info">
+              <div class="project-heading">
+                <p class="project-type">Open source · 2022</p>
+                <h3>Project Four</h3>
+              </div>
+              <p>Highlight an experiment, collaboration, or open-source contribution here.</p>
+              <div class="tag-list"><span>Open source</span><span>Node.js</span><span>Docs</span></div>
+              <a class="project-link" href="#" aria-label="View Project Four">View project <span>↗</span></a>
+            </div>
+          </article>
+        </section>
+
+        <footer class="projects-footer">
+          <p>More work coming soon.</p>
+          <a href="mailto:hello@example.com">Let’s work together <span>↗</span></a>
+        </footer>
+      </main>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

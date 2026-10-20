@@ -1,0 +1,350 @@
+:root {
+  --ink: #20211e;
+  --muted: #777870;
+  --paper: #f5f4ef;
+  --line: #d8d8d0;
+  --accent: #ff614d;
+  --mono: "DM Mono", monospace;
+  --sans: "Space Grotesk", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: var(--sans);
+}
+
+a {
+  color: inherit;
+}
+
+.page-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(0, 2fr);
+  min-height: 100vh;
+}
+
+.about-panel {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  padding: 3.5rem clamp(2rem, 5vw, 5rem);
+  border-right: 1px solid var(--line);
+}
+
+.eyebrow,
+.detail-label,
+.project-type,
+.project-count,
+.copyright {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.about-content h1 {
+  margin: 3.5rem 0 2rem;
+  font-size: clamp(3.5rem, 7vw, 6.8rem);
+  font-weight: 600;
+  letter-spacing: -0.09em;
+  line-height: 0.82;
+}
+
+.about-content h1 span {
+  color: var(--accent);
+}
+
+.intro {
+  max-width: 18rem;
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+.about-details {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.45rem 1rem;
+  max-width: 20rem;
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.about-details p {
+  margin: 0;
+}
+
+.about-details .detail-label {
+  padding-top: 0.1rem;
+  font-size: 0.65rem;
+}
+
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 3rem;
+}
+
+.social-links a,
+.projects-footer a {
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.social-links a:hover,
+.projects-footer a:hover,
+.project-link:hover {
+  color: var(--accent);
+}
+
+.social-links span,
+.projects-footer span,
+.project-link span {
+  color: var(--accent);
+}
+
+.projects-panel {
+  min-width: 0;
+  padding: 3.5rem clamp(2rem, 5vw, 6rem);
+}
+
+.projects-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  padding-bottom: 4rem;
+}
+
+.projects-header h2 {
+  margin: 1.5rem 0 0;
+  font-size: clamp(2.2rem, 4.5vw, 5rem);
+  font-weight: 500;
+  letter-spacing: -0.07em;
+  line-height: 0.95;
+}
+
+.project-count {
+  flex-shrink: 0;
+  padding-bottom: 0.35rem;
+}
+
+.project-list {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.project-card {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.9fr) 1.1fr;
+  min-height: 18rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #efeee8;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 1rem 2rem rgb(32 33 30 / 8%);
+}
+
+.project-visual {
+  position: relative;
+  min-height: 18rem;
+  overflow: hidden;
+}
+
+.visual--coral { background: #ff765f; }
+.visual--blue { background: #7a9ee8; }
+.visual--yellow { background: #edc95c; }
+.visual--green { background: #8dc0a0; }
+
+.visual-mark {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  color: rgb(32 33 30 / 65%);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+}
+
+.visual-shape,
+.visual-circle,
+.visual-line,
+.visual-grid {
+  position: absolute;
+  display: block;
+}
+
+.visual-shape {
+  right: -15%;
+  bottom: -20%;
+  width: 75%;
+  height: 75%;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+}
+
+.visual-circle {
+  top: 50%;
+  left: 50%;
+  width: 9rem;
+  height: 9rem;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.visual-circle::after {
+  display: block;
+  width: 5rem;
+  height: 5rem;
+  margin: 2rem;
+  border-radius: 50%;
+  background: var(--ink);
+  content: "";
+}
+
+.visual-line {
+  top: 50%;
+  left: 10%;
+  width: 85%;
+  border-top: 1px solid var(--ink);
+  transform: rotate(-35deg);
+}
+
+.visual-grid {
+  inset: 20%;
+  background-image: linear-gradient(var(--ink) 1px, transparent 1px), linear-gradient(90deg, var(--ink) 1px, transparent 1px);
+  background-size: 2rem 2rem;
+  opacity: 0.75;
+  transform: rotate(-15deg);
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 2rem clamp(1.5rem, 3vw, 3rem);
+}
+
+.project-heading h3 {
+  margin: 0.7rem 0 0;
+  font-size: clamp(1.7rem, 3vw, 2.8rem);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+}
+
+.project-info > p {
+  max-width: 25rem;
+  margin: 2rem 0 1.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag-list span {
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 2rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+}
+
+.project-link {
+  margin-top: auto;
+  padding-top: 2rem;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.projects-footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.projects-footer p {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  .page-shell {
+    display: block;
+  }
+
+  .about-panel {
+    position: relative;
+    height: auto;
+    min-height: 100vh;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .projects-panel {
+    padding-top: 3rem;
+  }
+
+  .projects-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding-bottom: 3rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .about-panel,
+  .projects-panel {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .project-card {
+    display: block;
+  }
+
+  .project-visual {
+    min-height: 13rem;
+  }
+
+  .project-info {
+    min-height: 18rem;
+  }
+
+  .projects-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
