@@ -60,3 +60,24 @@ document.querySelectorAll(".project-video[data-video-id]").forEach((video) => {
     observer.observe(video);
   }
 });
+
+// "About Me": opens on hover/focus via CSS, and on click/tap for touch screens
+const aboutMe = document.querySelector(".about-me");
+
+if (aboutMe) {
+  const button = aboutMe.querySelector(".about-me-button");
+  const setOpen = (open) => {
+    aboutMe.classList.toggle("open", open);
+    button.setAttribute("aria-expanded", String(open));
+  };
+
+  button.addEventListener("click", () => {
+    setOpen(!aboutMe.classList.contains("open"));
+  });
+  document.addEventListener("click", (event) => {
+    if (!aboutMe.contains(event.target)) setOpen(false);
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") setOpen(false);
+  });
+}

@@ -80,89 +80,152 @@ a {
   object-fit: contain;
 }
 
-/* Text on the image: positions are percentages of the image */
-.intro {
+/* Everything on the paper image is positioned in percentages of the image
+   and sized in cqw (1% of the image width), so it scales with the image. */
+.about-center {
   position: absolute;
-  top: 24%;
-  left: 8%;
-  width: 40%;
-  margin: 0;
-  color: var(--art-text);
-  font-size: clamp(0.75rem, 3.4cqw, 1.15rem);
-  line-height: 1.4;
-}
-
-.social-links {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.social-link {
-  position: absolute;
-  top: var(--y);
-  left: var(--x);
+  top: var(--chibi-y, 24%);
+  left: 50%;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 0.6em;
-  width: var(--w);
-  height: var(--h);
-  padding-left: var(--pad, 14%);
-  color: var(--art-text);
-  font-size: clamp(0.75rem, 3.6cqw, 1.15rem);
-  font-weight: 700;
-  text-decoration: none;
-  pointer-events: auto;
+  gap: 1.5cqw;
+  width: var(--chibi-w, 40%);
+  transform: translateX(-50%);
 }
 
-.social-link:hover {
+.chibi {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.about-me {
+  position: relative;
+}
+
+.about-me-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--art-text);
+  font: 700 clamp(0.9rem, 4.2cqw, 1.4rem) / 1.2 var(--heading);
+  text-decoration: underline dotted;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.about-me-button:hover,
+.about-me-button:focus-visible {
   color: var(--accent-dark);
 }
 
-.social-link:focus-visible {
+.about-me-text {
+  position: absolute;
+  top: calc(100% + 0.6em);
+  left: 50%;
+  z-index: 2;
+  width: 62cqw;
+  margin: 0;
+  padding: 1em 1.2em;
+  border: 1px solid var(--line);
+  background: #fffdfb;
+  box-shadow: 0 0.6rem 1.4rem rgb(15 88 84 / 15%);
+  color: var(--text);
+  font-size: clamp(0.75rem, 3.4cqw, 1.1rem);
+  line-height: 1.45;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, 0.4em);
+  transition: opacity 180ms ease, transform 180ms ease, visibility 180ms;
+}
+
+.about-me:hover .about-me-text,
+.about-me:focus-within .about-me-text,
+.about-me.open .about-me-text {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+/* SnippetL + SnippetR side by side, SnippetMiddle below */
+.snippets {
+  position: absolute;
+  right: 6%;
+  bottom: 4%;
+  left: 6%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2cqw;
+}
+
+.snippet {
+  display: grid;
+  place-items: center;
+  color: var(--art-text);
+  font-size: clamp(0.75rem, 3.4cqw, 1.1rem);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.snippet>* {
+  grid-area: 1 / 1;
+  transition: transform 200ms ease;
+}
+
+.snippet img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.snippet-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.snippet-middle {
+  grid-column: 1 / -1;
+  justify-self: center;
+  width: 80%;
+  font-size: clamp(0.6rem, 3cqw, 1rem);
+}
+
+.snippet:hover,
+.snippet:focus-visible {
+  color: var(--accent-dark);
+}
+
+.snippet:hover>*,
+.snippet:focus-visible>* {
+  transform: translateY(-3px);
+}
+
+.snippet:focus-visible {
   outline: 2px solid var(--accent-dark);
   outline-offset: 2px;
 }
 
-.social-github {
-  --x: 4%;
-  --y: 65%;
-  --w: 36%;
-  --h: 7%;
-}
-
-.social-linkedin {
-  --x: 3%;
-  --y: 74%;
-  --w: 46%;
-  --h: 7%;
-}
-
-.social-email {
-  --x: 2%;
-  --y: 83%;
-  --w: 80%;
-  --h: 8%;
-  font-size: clamp(0.6rem, 3cqw, 1rem);
-}
-
-.social-link svg {
+.snippet svg {
   width: 1.3em;
   height: 1.3em;
   flex: none;
   fill: currentColor;
 }
 
-.social-link svg.outline {
+.snippet svg.outline {
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
   stroke-linejoin: round;
 }
 
-/* Add class="debug" to .about-art to see the clickable areas */
-.about-art.debug>.intro,
-.about-art.debug .social-link {
+/* Add class="debug" to .about-art to see the positioned areas */
+.about-art.debug .about-center,
+.about-art.debug .snippet {
   outline: 1px dashed red;
 }
 
@@ -336,7 +399,10 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .image-zoom img {
+
+  .image-zoom img,
+  .snippet>*,
+  .about-me-text {
     transition: none;
   }
 }
