@@ -63,8 +63,8 @@ a {
 
 /* Set --art-w / --art-h to the pixel size of PaperBG.png */
 .about-art {
-  --art-w: 571;
-  --art-h: 768;
+  --art-w: 594;
+  --art-h: 783;
   --art-text: #8f5a5e;
 
   position: relative;
@@ -84,14 +84,13 @@ a {
    and sized in cqw (1% of the image width), so it scales with the image. */
 .about-center {
   position: absolute;
-  top: var(--chibi-y, 24%);
-  left: 50%;
+  top: var(--chibi-y, 32.5%);
+  left: var(--chibi-x, 48.3%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5cqw;
-  width: var(--chibi-w, 40%);
-  transform: translateX(-50%);
+  width: var(--chibi-w, 35.9%);
 }
 
 .chibi {
@@ -150,24 +149,25 @@ a {
   transform: translate(-50%, 0);
 }
 
-/* SnippetL + SnippetR side by side, SnippetMiddle below */
+/* Snippets: each one is placed by left / top / width (percent of PaperBG),
+   so it keeps its size and position relative to the paper image. */
 .snippets {
   position: absolute;
-  right: 6%;
-  bottom: 4%;
-  left: 6%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2cqw;
+  inset: 0;
+  pointer-events: none;
 }
 
 .snippet {
+  position: absolute;
+  top: var(--y);
+  left: var(--x);
   display: grid;
-  place-items: center;
+  width: var(--w);
   color: var(--art-text);
-  font-size: clamp(0.75rem, 3.4cqw, 1.1rem);
+  font-size: clamp(0.7rem, 3cqw, 1.5rem);
   font-weight: 700;
   text-decoration: none;
+  pointer-events: auto;
 }
 
 .snippet>* {
@@ -184,19 +184,66 @@ a {
 .snippet-label {
   display: flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.8em;
+  align-self: center;
+  padding-left: var(--pad, 5%);
+}
+
+.snippet-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 1.8em;
+  height: 1.8em;
+  border-radius: 50%;
+  background: var(--art-text);
+  color: #f6ece6;
+  transition: background-color 150ms ease;
+}
+
+.snippet-icon svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+}
+
+.snippet-icon svg.outline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.snippet-l {
+  --x: 5.4%;
+  --y: 63.9%;
+  --w: 33.8%;
+  --pad: 7%;
+}
+
+.snippet-r {
+  --x: 3.7%;
+  --y: 72.5%;
+  --w: 43.4%;
+  --pad: 6%;
 }
 
 .snippet-middle {
-  grid-column: 1 / -1;
-  justify-self: center;
-  width: 80%;
-  font-size: clamp(0.6rem, 3cqw, 1rem);
+  --x: 3.5%;
+  --y: 81.7%;
+  --w: 75.3%;
+  --pad: 4%;
+  font-size: clamp(0.6rem, 2.9cqw, 1.4rem);
 }
 
 .snippet:hover,
 .snippet:focus-visible {
   color: var(--accent-dark);
+}
+
+.snippet:hover .snippet-icon,
+.snippet:focus-visible .snippet-icon {
+  background: var(--accent-dark);
 }
 
 .snippet:hover>*,
@@ -207,20 +254,6 @@ a {
 .snippet:focus-visible {
   outline: 2px solid var(--accent-dark);
   outline-offset: 2px;
-}
-
-.snippet svg {
-  width: 1.3em;
-  height: 1.3em;
-  flex: none;
-  fill: currentColor;
-}
-
-.snippet svg.outline {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linejoin: round;
 }
 
 /* Add class="debug" to .about-art to see the positioned areas */
